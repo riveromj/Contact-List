@@ -4,10 +4,7 @@ import PropTypes from "prop-types";
 import MikePhoto from "../../img/m101.jpg";
 
 export const ContactCard = props => {
-	const [state, setState] = useState({
-		//initialize state here
-	});
-
+	console.log("componete contactcard", props);
 	return (
 		<li className="list-group-item">
 			<div className="row w-100">
@@ -19,11 +16,11 @@ export const ContactCard = props => {
 						<button className="btn">
 							<i className="fas fa-pencil-alt mr-3" />
 						</button>
-						<button className="btn" onClick={() => props.onDelete()}>
+						<button className="btn" onClick={() => props.onDelete(props.contact.id)}>
 							<i className="fas fa-trash-alt" />
 						</button>
 					</div>
-					<label className="name lead">Mike Anamendolla</label>
+					<label className="name lead">{props.contact.full_name}</label>
 					<br />
 					<i className="fas fa-map-marker-alt text-muted mr-3" />
 					<span className="text-muted">5842 Hillcrest Rd</span>
@@ -55,7 +52,8 @@ export const ContactCard = props => {
  **/
 ContactCard.propTypes = {
 	history: PropTypes.object,
-	onDelete: PropTypes.func
+	onDelete: PropTypes.func,
+	contact: PropTypes.object
 };
 
 /**
