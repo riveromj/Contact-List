@@ -1,4 +1,4 @@
-const getState = ({ getStore, setStore }) => {
+const getState = ({ getStore, setStore, getActions }) => {
 	return {
 		store: {
 			agenda: []
@@ -12,29 +12,34 @@ const getState = ({ getStore, setStore }) => {
 
 					.catch(err => console.log("Err", err));
 			},
-			deleteContact: contact_id => {
-				fetch("https://assets.breatheco.de/apis/fake/contact/" + { contact_id }, {
+			deleteContact: id => {
+				fetch("https://assets.breatheco.de/apis/fake/contact/" + { id }, {
 					method: "DELETE",
 					headers: {
 						"Content-Type": "application/json"
 					}
 				})
-					.then(res => res.json())
-					//.then(response => console.log("Success:", JSON.stringify(response)))
+					//.then(res => res.json())
+					.then(response => console.log("Success:", JSON.stringify(response)))
+
 					.catch(err => console.log(err));
 			},
 
-			addConatct: contact => {
+			addContact: (contact, title, id = "") => {
 				console.log(contact, "En flux");
-				fetch("https://assets.breatheco.de/apis/fake/contact/", {
-					method: "POST", // or ‘POST’
+
+				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
+					method: title == "Update contact" ? "PUT" : "POST", // or ‘POST’
 					body: JSON.stringify(contact), // data can be `string` or {object}!
 					headers: {
 						"Content-Type": "application/json"
 					}
 				})
-					.then(res => res.json())
-					.then(response => console.log("Success:", JSON.stringify(response)))
+					.then(respose => {
+						if (respose.ok) {
+							getActions().loadAgenda();
+						}
+					})
 					.catch(err => console.log(err));
 			}
 
