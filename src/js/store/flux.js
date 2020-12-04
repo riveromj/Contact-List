@@ -1,7 +1,8 @@
 const getState = ({ getStore, setStore, getActions }) => {
 	return {
 		store: {
-			agenda: []
+			agenda: [],
+			idContact: ""
 		},
 		actions: {
 			loadAgenda: () => {
@@ -13,7 +14,7 @@ const getState = ({ getStore, setStore, getActions }) => {
 					.catch(err => console.log("Err", err));
 			},
 			deleteContact: id => {
-				fetch("https://assets.breatheco.de/apis/fake/contact/" + { id }, {
+				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
 					method: "DELETE",
 					headers: {
 						"Content-Type": "application/json"
@@ -41,6 +42,10 @@ const getState = ({ getStore, setStore, getActions }) => {
 						}
 					})
 					.catch(err => console.log(err));
+			},
+			setId: id => {
+				const stateId = setStore();
+				setStore({ ...stateId, idContact: id });
 			}
 
 			//(Arrow) Functions that update the Store

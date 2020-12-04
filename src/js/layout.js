@@ -8,6 +8,8 @@ import injectContext from "./store/appContext";
 import { Contacts } from "./views/Contacts.js";
 import { AddContact } from "./views/AddContact.js";
 
+import { Modal } from "./component/Modal.js";
+
 export const Layout = () => {
 	return (
 		<div>
@@ -19,6 +21,7 @@ export const Layout = () => {
 						<Route exact path="/contacts" component={Contacts} />
 						<Route exact path="/add" component={AddContact} />
 						<Route exact path="/edit" component={AddContact} />
+						<Route exact path="/delete" component={Modal} />
 						<Route render={() => <h1 className="notfound">Not found!</h1>} />
 					</Switch>
 				</div>

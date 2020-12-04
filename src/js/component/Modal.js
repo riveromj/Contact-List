@@ -1,15 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 export const Modal = props => {
+	const { store, actions } = useContext(Context);
+	const deleteContact = "";
+
+	//console.log(deleteContact, "CONTACTO BORRARDO");
 	const [state, setState] = useState({
 		//initialize state here
 	});
-	const handelDelete = id => {
-		console.log("borrarndo=", props.id);
+	const handelDelete = () => {
+		actions.deleteContact(store.idContact);
+		console.log("borrarndo=", store.idContact);
+		//console.log("id que voy a borrar", props.id.location);
+		//actions.deleteContact(id);
 	};
 	console.log(props, "estoy en modal");
+
 	/*  const handelDelete = event =>{
 
     };*/
@@ -39,11 +49,8 @@ export const Modal = props => {
 						<button onClick={() => props.onClose()} type="button" className="btn btn-primary">
 							Oh no!
 						</button>
-						<button
-							type="button"
-							className="btn btn-secondary"
-							data-dismiss="modal"
-							onClick={handelDelete(props.id)}>
+
+						<button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={handelDelete}>
 							Do it!
 						</button>
 					</div>
@@ -60,7 +67,9 @@ Modal.propTypes = {
 	history: PropTypes.object,
 	onClose: PropTypes.func,
 	show: PropTypes.bool,
-	id: PropTypes.any
+	location: PropTypes.object,
+	id: PropTypes.any,
+	contact: PropTypes.object
 };
 
 /**

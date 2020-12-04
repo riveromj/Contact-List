@@ -8,11 +8,11 @@ export const AddContact = props => {
 	const contact = props.location.state.contact;
 	const title = props.location.state.title;
 	const [user, setUser] = useState({
-		address: "",
+		address: title == "Update contact" ? contact.address : "",
 		agenda_slug: "riveromj",
-		email: "",
+		email: title == "Update contact" ? contact.email : "",
 		full_name: title == "Update contact" ? contact.full_name : "",
-		phone: ""
+		phone: title == "Update contact" ? contact.phone : ""
 	});
 
 	const handelChange = event => {
@@ -22,7 +22,7 @@ export const AddContact = props => {
 	const handelSubmit = event => {
 		event.preventDefault();
 		const id = title == "Update contact" ? contact.id : "";
-		//props.location.state.tile == "Update contact" ? actions.updateContact(user) : actions.addConatct(user);
+		//props.location.state.tile == "Update contact" ? actions.updateContact(user) : actions.addContact(user);
 		actions.addContact(user, title, id);
 	};
 	return (
@@ -36,12 +36,19 @@ export const AddContact = props => {
 							type="text"
 							className="form-control"
 							defaultValue={title == "Update contact" ? contact.full_name : ""}
+							placeholder="Full Name"
 							name="full_name"
 						/>
 					</div>
 					<div className="form-group">
 						<label>Email</label>
-						<input type="email" className="form-control" placeholder="Enter email" name="email" />
+						<input
+							type="email"
+							className="form-control"
+							defaultValue={title == "Update contact" ? contact.email : ""}
+							placeholder="Enter email"
+							name="email"
+						/>
 					</div>
 					<div className="form-group">
 						<label>Phone</label>
@@ -51,11 +58,10 @@ export const AddContact = props => {
 						<label>Address</label>
 						<input type="text" className="form-control" placeholder="Enter address" name="address" />
 					</div>
-					<button type="submit" className="btn btn-primary form-control">
-						save
-					</button>
 					<Link className="mt-3 w-100 text-center" to="/">
-						or get back to contacts
+						<button type="submit" className="btn btn-primary form-control">
+							save
+						</button>
 					</Link>
 				</form>
 			</div>

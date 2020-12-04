@@ -11,7 +11,7 @@ export const Contacts = () => {
 	const [state, setState] = useState({
 		showModal: false
 	});
-	console.log();
+
 	return (
 		<div className="container">
 			<div>
