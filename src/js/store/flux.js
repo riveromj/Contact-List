@@ -26,7 +26,7 @@ const getState = ({ getStore, setStore, getActions }) => {
 					.catch(err => console.log(err));
 			},
 
-			addContact: (contact, title, id = "") => {
+			addContact: (contact, title, id = "", props) => {
 				console.log(contact, "En flux");
 
 				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
@@ -38,7 +38,7 @@ const getState = ({ getStore, setStore, getActions }) => {
 				})
 					.then(respose => {
 						if (respose.ok) {
-							getActions().loadAgenda();
+							props.history.push("/");
 						}
 					})
 					.catch(err => console.log(err));

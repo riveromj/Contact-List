@@ -23,7 +23,7 @@ export const AddContact = props => {
 		event.preventDefault();
 		const id = title == "Update contact" ? contact.id : "";
 		//props.location.state.tile == "Update contact" ? actions.updateContact(user) : actions.addContact(user);
-		actions.addContact(user, title, id);
+		actions.addContact(user, title, id, props);
 	};
 	return (
 		<div className="container">
@@ -58,11 +58,10 @@ export const AddContact = props => {
 						<label>Address</label>
 						<input type="text" className="form-control" placeholder="Enter address" name="address" />
 					</div>
-					<Link className="mt-3 w-100 text-center" to="/">
-						<button type="submit" className="btn btn-primary form-control">
-							save
-						</button>
-					</Link>
+
+					<button type="submit" className="btn btn-primary form-control">
+						save
+					</button>
 				</form>
 			</div>
 		</div>

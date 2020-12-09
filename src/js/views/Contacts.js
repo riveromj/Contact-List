@@ -6,11 +6,14 @@ import { Modal } from "../component/Modal";
 import { Context } from "../store/appContext";
 
 export const Contacts = () => {
-	const { store, acctions } = useContext(Context);
+	const { store, actions } = useContext(Context);
 	//console.log(store.agenda, " estoy en contactos");
 	const [state, setState] = useState({
 		showModal: false
 	});
+	useEffect(() => {
+		actions.loadAgenda();
+	}, []);
 
 	return (
 		<div className="container">

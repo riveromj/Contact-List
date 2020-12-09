@@ -21,9 +21,7 @@ const injectContext = PassedComponent => {
 			})
 		);
 
-		useEffect(() => {
-			state.actions.loadAgenda();
-		}, []);
+		useEffect(() => {}, []);
 
 		return (
 			<Context.Provider value={state}>
