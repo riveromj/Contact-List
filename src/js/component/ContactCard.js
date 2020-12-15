@@ -11,9 +11,8 @@ export const ContactCard = props => {
 	const handelDelete = () => {
 		actions.setId(props.contact.id);
 		props.onDelete();
-		console.log(props.contact.id);
 	};
-	console.log("COMPONENTE CONTACTCARD TODOS CONTACTO", props);
+
 	return (
 		<li className="list-group-item">
 			<div className="row w-100">

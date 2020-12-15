@@ -8,7 +8,7 @@ const getState = ({ getStore, setStore, getActions }) => {
 			loadAgenda: () => {
 				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/riveromj")
 					.then(res => res.json())
-					//.then(data => console.log(data))
+
 					.then(data => setStore({ agenda: data }))
 
 					.catch(err => console.log("Err", err));
@@ -20,15 +20,12 @@ const getState = ({ getStore, setStore, getActions }) => {
 						"Content-Type": "application/json"
 					}
 				})
-					//.then(res => res.json())
 					.then(response => console.log("Success:", JSON.stringify(response)))
 
 					.catch(err => console.log(err));
 			},
 
 			addContact: (contact, title, id = "", props) => {
-				console.log(contact, "En flux");
-
 				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
 					method: title == "Update contact" ? "PUT" : "POST", // or ‘POST’
 					body: JSON.stringify(contact), // data can be `string` or {object}!

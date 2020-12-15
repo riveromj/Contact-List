@@ -18,7 +18,6 @@ export const Modal = props => {
 		//console.log("id que voy a borrar", props.id.location);
 		//actions.deleteContact(id);
 	};
-	console.log(props, "estoy en modal");
 
 	/*  const handelDelete = event =>{
 

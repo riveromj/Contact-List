@@ -7,7 +7,6 @@ import { Context } from "../store/appContext";
 
 export const Contacts = () => {
 	const { store, actions } = useContext(Context);
-	//console.log(store.agenda, " estoy en contactos");
 	const [state, setState] = useState({
 		showModal: false
 	});

@@ -16,13 +16,11 @@ export const AddContact = props => {
 	});
 
 	const handelChange = event => {
-		console.log(user);
 		setUser({ ...user, [event.target.name]: event.target.value });
 	};
 	const handelSubmit = event => {
 		event.preventDefault();
 		const id = title == "Update contact" ? contact.id : "";
-		//props.location.state.tile == "Update contact" ? actions.updateContact(user) : actions.addContact(user);
 		actions.addContact(user, title, id, props);
 	};
 	return (
@@ -52,11 +50,23 @@ export const AddContact = props => {
 					</div>
 					<div className="form-group">
 						<label>Phone</label>
-						<input type="phone" className="form-control" placeholder="Enter phone" name="phone" />
+						<input
+							type="phone"
+							className="form-control"
+							defaultValue={title == "Update contact" ? contact.phone : ""}
+							placeholder="Enter phone"
+							name="phone"
+						/>
 					</div>
 					<div className="form-group">
 						<label>Address</label>
-						<input type="text" className="form-control" placeholder="Enter address" name="address" />
+						<input
+							type="text"
+							className="form-control"
+							defaultValue={title == "Update contact" ? contact.address : ""}
+							placeholder="Enter address"
+							name="address"
+						/>
 					</div>
 
 					<button type="submit" className="btn btn-primary form-control">
